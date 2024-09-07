@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages;
 
+use App\Models\Especialidades;
+use App\Models\Medico;
 use MoonShine\Pages\Page;
 use MoonShine\Components\MoonShineComponent;
+use MoonShine\Decorations\Grid;
+use MoonShine\Metrics\ValueMetric;
 
 class Dashboard extends Page
 {
@@ -29,6 +33,23 @@ class Dashboard extends Page
      */
     public function components(): array
 	{
-		return [];
+
+        $totalespecialidades = Especialidades::count();
+		$totalmedicos  = Medico::count();
+
+
+        return [
+            Grid::make([
+                ValueMetric::make('Total de medicos')
+                ->value($totalmedicos)
+                ->icon('heroicons.outline.eye')
+                ->columnSpan(6),
+
+                ValueMetric::make('Total de especialidades')
+                ->value($totalespecialidades)
+                ->icon('heroicons.outline.users')
+                ->columnSpan(6),
+            ])
+        ];
 	}
 }

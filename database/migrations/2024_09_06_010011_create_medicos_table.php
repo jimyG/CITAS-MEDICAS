@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->string('password');
             $table->string('dui')->nullable();
             $table->string('edad')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
 
-            $table->foreignId('id_especialidad')
+            $table->foreignId('id_Especialidad')
                     ->nullable()
                     ->constrained('especialidades')
                     ->cascadeOnUpdate()
